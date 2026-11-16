@@ -1,0 +1,889 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Dream Career Countdown</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #fff3f5, #e8ddf7, #f8dce9);
+    color: #39283d;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+button {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 25px;
+    background: white;
+    color: #49334c;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 3px;
+}
+
+.primary {
+    background: linear-gradient(120deg, #edbfd2, #cdbbea);
+}
+
+.intro {
+    text-align: center;
+    margin: 50px 0 30px;
+}
+
+.intro small {
+    letter-spacing: 4px;
+    color: #997ba0;
+}
+
+h1 {
+    font: normal clamp(32px, 5vw, 55px) Georgia;
+    margin: 15px 0;
+}
+
+.layout {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.panel {
+    background: #ffffffbd;
+    border: 1px solid white;
+    border-radius: 24px;
+    padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 30px #856d8b20;
+}
+
+.panel h2 {
+    margin-bottom: 18px;
+    font-size: 20px;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.wallpaper {
+    max-width: 430px;
+    min-height: 690px;
+    margin: 20px auto;
+    padding: 35px 20px;
+    border-radius: 28px;
+    text-align: center;
+    background:
+    radial-gradient(circle at top left, white, transparent 30%),
+    linear-gradient(145deg, #fff9f4, #e8dcf6, #f5d4e1);
+}
+
+.eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #927a99;
+}
+
+.clock {
+    font: 55px Georgia;
+    margin: 25px 0 5px;
+}
+
+.date {
+    font-size: 12px;
+    color: #806d86;
+    letter-spacing: 1px;
+}
+
+.wall-title {
+    font: 34px/1.2 Georgia;
+    margin: 40px 0 15px;
+}
+
+.target {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin: 30px 0;
+}
+
+.unit {
+    flex: 1;
+}
+
+.unit strong {
+    display: block;
+    font: 38px Georgia;
+}
+
+.unit span {
+    font-size: 10px;
+    color: #806d86;
+}
+
+.colon {
+    font-size: 25px;
+}
+
+.rule {
+    height: 1px;
+    background: #c5a8c2;
+    margin: 20px 0;
+}
+
+.milestone-heading {
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.wall-task {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+    font-size: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #b99cb333;
+}
+
+.dot {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #bd91aa;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+}
+
+.done .dot {
+    background: #a987b2;
+    color: white;
+}
+
+.done .task-name {
+    text-decoration: line-through;
+    opacity: .5;
+}
+
+.task-date {
+    margin-left: auto;
+    color: #927b98;
+    font-size: 10px;
+}
+
+.quote {
+    font: italic 18px Georgia;
+    margin-top: 25px;
+}
+
+.progressline {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bar {
+    height: 10px;
+    background: #eaddec;
+    border-radius: 20px;
+    margin: 12px 0;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #e8b6cc, #b9a5e6);
+    transition: .3s;
+}
+
+.check-task {
+    display: flex;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd0e0;
+}
+
+.check-task input {
+    accent-color: #aa82b4;
+    width: 17px;
+}
+
+.check-task input:checked + label {
+    text-decoration: line-through;
+    opacity: .5;
+}
+
+.focus {
+    background: linear-gradient(120deg, #f8e0e9, #e8e0f6);
+    padding: 18px;
+    border-radius: 17px;
+    line-height: 1.8;
+}
+
+input[type="time"] {
+    padding: 10px;
+    border: 1px solid #ddc9df;
+    border-radius: 12px;
+}
+
+.desktop {
+    max-width: 850px;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 15px;
+    padding: 25px;
+}
+
+.desktop .wall-title {
+    font-size: 26px;
+    margin: 15px 0;
+}
+
+.desktop .clock {
+    font-size: 40px;
+    margin: 10px 0;
+}
+
+.desktop .countdown {
+    margin: 15px 0;
+}
+
+.desktop .unit strong {
+    font-size: 25px;
+}
+
+.desktop .wall-task {
+    font-size: 10px;
+    padding: 6px 0;
+}
+
+.desktop .quote {
+    font-size: 13px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #927e94;
+}
+
+@media(max-width: 850px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    .panel {
+        padding: 15px;
+    }
+
+    .wallpaper {
+        min-height: 650px;
+        padding: 28px 12px;
+    }
+
+    .wall-title {
+        font-size: 28px;
+    }
+
+    .unit strong {
+        font-size: 29px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">✦ MY CAREER COUNTDOWN</div>
+
+    <div>
+        <button onclick="toggleFullscreen()">⛶ Full Screen</button>
+        <button class="primary" onclick="downloadWallpaper()">
+            Download Wallpaper ↓
+        </button>
+    </div>
+</header>
+
+<main>
+
+<section class="intro">
+    <small>YOUR FUTURE STARTS TODAY</small>
+    <h1>My Dream Career Countdown</h1>
+    <p>Dream big. Learn daily. Build your future.</p>
+</section>
+
+<div class="layout">
+
+<section class="panel">
+
+    <div class="head">
+        <h2>✧ Lock Screen Preview</h2>
+
+        <div>
+            <button onclick="setMode('phone')">Phone</button>
+            <button onclick="setMode('laptop')">Laptop</button>
+        </div>
+    </div>
+
+    <div class="wallpaper" id="wallpaper">
+
+        <div class="eyebrow">
+            YOUR FUTURE IS MADE TODAY
+        </div>
+
+        <div class="clock" id="clock">00:00</div>
+        <div class="date" id="todayDate"></div>
+
+        <div class="wall-title">
+            MY DREAM CAREER<br>COUNTDOWN
+        </div>
+
+        <div class="target">
+            TARGET · DECEMBER 31, 2026
+        </div>
+
+        <div class="countdown">
+
+            <div class="unit">
+                <strong id="days">00</strong>
+                <span>DAYS</span>
+            </div>
+
+            <div class="colon">:</div>
+
+            <div class="unit">
+                <strong id="hours">00</strong>
+                <span>HRS</span>
+            </div>
+
+            <div class="colon">:</div>
+
+            <div class="unit">
+                <strong id="minutes">00</strong>
+                <span>MINS</span>
+            </div>
+
+            <div class="colon">:</div>
+
+            <div class="unit">
+                <strong id="seconds">00</strong>
+                <span>SECS</span>
+            </div>
+
+        </div>
+
+        <div class="rule"></div>
+
+        <div class="milestone-heading">
+            KEY MILESTONES
+        </div>
+
+        <div id="wallTasks"></div>
+
+        <div class="quote">
+            "Dream it. Learn it. Build it."
+        </div>
+
+    </div>
+
+    <p style="text-align:center;color:#806d86;font-size:12px">
+        Select your device and download your wallpaper.
+    </p>
+
+</section>
+
+<aside>
+
+<section class="panel">
+
+    <h2>✧ My Progress</h2>
+
+    <div class="progressline">
+        <span>Milestones completed</span>
+        <strong id="progressText">0 / 6</strong>
+    </div>
+
+    <div class="bar">
+        <div class="fill" id="progressFill"></div>
+    </div>
+
+    <p id="progressMessage">Every small step counts!</p>
+
+    <div id="taskList"></div>
+
+</section>
+
+<section class="panel">
+
+    <h2>✧ Today's Study Goal</h2>
+
+    <div class="focus">
+        <b>2–3 Hours Daily</b><br>
+        6 Days a Week<br>
+        30% Learning + 70% Practical Coding
+    </div>
+
+</section>
+
+<section class="panel">
+
+    <h2>✧ Daily Reminder</h2>
+
+    <input type="time" id="reminderTime" value="19:00">
+
+    <button class="primary" onclick="setReminder()">
+        Set Reminder
+    </button>
+
+    <p id="reminderStatus" style="margin-top:12px;font-size:12px">
+        Keep this page open for browser reminders.
+    </p>
+
+</section>
+
+</aside>
+</div>
+</main>
+
+<footer>
+    Made with ♡ for my future self · December 31, 2026
+</footer>
+
+<script>
+
+// 1. DEADLINE
+const deadline = new Date(2026, 11, 31, 23, 59, 59);
+
+const milestones = [
+    {date:"DEC 1", name:"HTML & CSS Foundations"},
+    {date:"DEC 17", name:"JavaScript & Projects"},
+    {date:"DEC 24", name:"Portfolio Live"},
+    {date:"DEC 28", name:"Final Review"},
+    {date:"DEC 30", name:"Launch Ready"},
+    {date:"DEC 31", name:"Become Job Ready!"}
+];
+
+const $ = id => document.getElementById(id);
+
+
+// 2. LIVE CLOCK AND COUNTDOWN
+function updateClock() {
+
+    const now = new Date();
+
+    $("clock").textContent =
+        now.toLocaleTimeString("en-GB", {
+            hour:"2-digit",
+            minute:"2-digit"
+        });
+
+    $("todayDate").textContent =
+        now.toLocaleDateString("en-US", {
+            weekday:"long",
+            month:"long",
+            day:"numeric"
+        }).toUpperCase();
+
+    let remaining = Math.max(0, deadline - now);
+
+    $("days").textContent =
+        Math.floor(remaining / 86400000);
+
+    $("hours").textContent =
+        String(Math.floor(remaining / 3600000) % 24).padStart(2,"0");
+
+    $("minutes").textContent =
+        String(Math.floor(remaining / 60000) % 60).padStart(2,"0");
+
+    $("seconds").textContent =
+        String(Math.floor(remaining / 1000) % 60).padStart(2,"0");
+}
+
+
+// 3. LOAD MILESTONES
+function loadTasks() {
+
+    let saved = [];
+
+    try {
+        saved = JSON.parse(
+            localStorage.getItem("careerProgress") || "[]"
+        );
+    } catch(error) {}
+
+    milestones.forEach((item, index) => {
+
+        const row = document.createElement("div");
+        row.className = "check-task";
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = "task" + index;
+        checkbox.checked = saved[index] === true;
+
+        checkbox.addEventListener("change", updateProgress);
+
+        const label = document.createElement("label");
+        label.htmlFor = checkbox.id;
+        label.textContent = item.date + " · " + item.name;
+
+        row.append(checkbox, label);
+        $("taskList").append(row);
+
+
+        const wallRow = document.createElement("div");
+        wallRow.className = "wall-task";
+
+        const dot = document.createElement("span");
+        dot.className = "dot";
+
+        const name = document.createElement("span");
+        name.className = "task-name";
+        name.textContent = item.name;
+
+        const date = document.createElement("span");
+        date.className = "task-date";
+        date.textContent = item.date;
+
+        wallRow.append(dot, name, date);
+
+        $("wallTasks").append(wallRow);
+
+    });
+
+}
+
+
+// 4. PROGRESS TRACKER
+function updateProgress() {
+
+    let completed = 0;
+
+    milestones.forEach((item, index) => {
+
+        const checked = $("task" + index).checked;
+
+        const wallRow = $("wallTasks").children[index];
+
+        wallRow.classList.toggle("done", checked);
+
+        wallRow.querySelector(".dot").textContent =
+            checked ? "✓" : "";
+
+        if (checked) completed++;
+
+    });
+
+    $("progressText").textContent =
+        completed + " / 6";
+
+    $("progressFill").style.width =
+        (completed / 6 * 100) + "%";
+
+    $("progressMessage").textContent =
+        completed === 6
+        ? "Amazing! All milestones completed!"
+        : completed + " completed. Keep going!";
+
+    try {
+        localStorage.setItem(
+            "careerProgress",
+            JSON.stringify(
+                milestones.map((item, index) =>
+                    $("task" + index).checked
+                )
+            )
+        );
+    } catch(error) {}
+
+}
+
+
+// 5. PHONE AND LAPTOP MODE
+function setMode(mode) {
+
+    $("wallpaper").classList.toggle(
+        "desktop",
+        mode === "laptop"
+    );
+
+}
+
+
+// 6. FULL SCREEN
+function toggleFullscreen() {
+
+    const element = $("wallpaper");
+
+    if (!document.fullscreenElement) {
+
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        }
+
+    } else {
+
+        document.exitFullscreen();
+
+    }
+
+}
+
+
+// 7. DOWNLOAD WALLPAPER
+function downloadWallpaper() {
+
+    const laptop =
+        $("wallpaper").classList.contains("desktop");
+
+    const canvas = document.createElement("canvas");
+
+    canvas.width = laptop ? 1920 : 1080;
+    canvas.height = laptop ? 1080 : 1920;
+
+    const ctx = canvas.getContext("2d");
+
+    const w = canvas.width;
+    const h = canvas.height;
+
+    const bg = ctx.createLinearGradient(0, 0, w, h);
+
+    bg.addColorStop(0, "#fff8f2");
+    bg.addColorStop(0.5, "#e9def5");
+    bg.addColorStop(1, "#f5d4e1");
+
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, w, h);
+
+    // Decorative sparkles
+    for (let i = 0; i < 35; i++) {
+
+        ctx.beginPath();
+
+        ctx.arc(
+            (i * 173) % w,
+            (i * 257) % h,
+            3 + (i % 4) * 2,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle = "rgba(255,255,255,.7)";
+        ctx.fill();
+
+    }
+
+    const center = laptop ? w * 0.25 : w / 2;
+    const left = laptop ? w * 0.55 : w * 0.1;
+
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#39283d";
+
+    ctx.font = "27px Arial";
+    ctx.fillText("YOUR FUTURE IS MADE TODAY", center, h * 0.12);
+
+    ctx.font = "110px Georgia";
+    ctx.fillText($("clock").textContent, center, h * 0.22);
+
+    ctx.font = "24px Arial";
+    ctx.fillText($("todayDate").textContent, center, h * 0.26);
+
+    ctx.font = "58px Georgia";
+    ctx.fillText("MY DREAM CAREER", center, h * 0.36);
+    ctx.fillText("COUNTDOWN", center, h * 0.405);
+
+    ctx.font = "bold 26px Arial";
+    ctx.fillText("TARGET · DECEMBER 31, 2026", center, h * 0.45);
+
+    ctx.font = "60px Georgia";
+
+    ctx.fillText(
+        `${$("days").textContent} : ${$("hours").textContent} : ${$("minutes").textContent} : ${$("seconds").textContent}`,
+        center,
+        h * 0.53
+    );
+
+    ctx.textAlign = "left";
+
+    const titleY = laptop ? h * 0.29 : h * 0.61;
+
+    ctx.font = "bold 30px Arial";
+    ctx.fillText("KEY MILESTONES", left, titleY);
+
+    milestones.forEach((item, index) => {
+
+        const y = titleY + (laptop ? 67 : 83) * (index + 1);
+
+        const done = $("task" + index).checked;
+
+        ctx.beginPath();
+        ctx.arc(left + 12, y - 9, 13, 0, Math.PI * 2);
+
+        ctx.strokeStyle = "#bd91aa";
+        ctx.stroke();
+
+        if (done) {
+            ctx.fillStyle = "#98739d";
+            ctx.font = "20px Arial";
+            ctx.fillText("✓", left + 3, y - 2);
+        }
+
+        ctx.fillStyle = "#39283d";
+        ctx.font = "24px Arial";
+
+        ctx.fillText(
+            item.date + " · " + item.name,
+            left + 40,
+            y
+        );
+
+    });
+
+    ctx.textAlign = "center";
+    ctx.font = "italic 34px Georgia";
+    ctx.fillStyle = "#70586e";
+
+    ctx.fillText(
+        "Dream it. Learn it. Build it.",
+        laptop ? w * 0.75 : w / 2,
+        h * 0.95
+    );
+
+    const link = document.createElement("a");
+
+    link.download = laptop
+        ? "Career-Countdown-Laptop.png"
+        : "Career-Countdown-Mobile.png";
+
+    link.href = canvas.toDataURL("image/png");
+
+    link.click();
+
+}
+
+
+// 8. DAILY REMINDER
+let reminderTimer = null;
+let lastReminder = "";
+
+async function setReminder() {
+
+    const time = $("reminderTime").value;
+
+    if (!time) {
+        $("reminderStatus").textContent =
+            "Please select a time.";
+        return;
+    }
+
+    if (!("Notification" in window)) {
+        $("reminderStatus").textContent =
+            "Notifications are not supported.";
+        return;
+    }
+
+    const permission = await Notification.requestPermission();
+
+    if (permission !== "granted") {
+        $("reminderStatus").textContent =
+            "Notification permission was not granted.";
+        return;
+    }
+
+    if (reminderTimer) {
+        clearInterval(reminderTimer);
+    }
+
+    $("reminderStatus").textContent =
+        "Reminder set for " + time +
+        ". Keep this page open.";
+
+    reminderTimer = setInterval(() => {
+
+        const now = new Date();
+
+        const today = now.toDateString();
+
+        const current =
+            String(now.getHours()).padStart(2, "0") +
+            ":" +
+            String(now.getMinutes()).padStart(2, "0");
+
+        if (current === time && lastReminder !== today) {
+
+            lastReminder = today;
+
+            new Notification(
+                "Time to work on your dream! ✨",
+                {
+                    body: "Practice coding today. Your future self will thank you!"
+                }
+            );
+
+        }
+
+    }, 15000);
+
+}
+
+
+// 9. START WEBSITE
+loadTasks();
+updateProgress();
+updateClock();
+
+setInterval(updateClock, 1000);
+
+</script>
+
+</body>
+</html>
+
